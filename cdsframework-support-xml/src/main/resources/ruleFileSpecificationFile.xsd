@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    The cdsframework support xml project implements some base xsd artifact generation functionality.
+
+    Copyright 2016 HLN Consulting, LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information about the this software, see https://www.hln.com/services/open-source/ or send
+    correspondence to scm@cdsframework.org.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:rl10="org.cdsframework.util.support.data.rule.file"
+           targetNamespace="org.cdsframework.util.support.data.rule.file"
+           version="1.0">
+    <xs:complexType name="ruleFile">
+        <xs:sequence>
+            <xs:element name="cdsVersion" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">A cds version that this season is associated with.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="createDatetime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="createId" type="xs:string"/>
+            <xs:element minOccurs="0" name="fileId" type="xs:int"/>
+            <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+            <xs:element minOccurs="0" name="folderName" type="xs:string"/>
+            <xs:element minOccurs="0" name="lastModDatetime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="lastModId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RuleFileSpecificationFile" type="rl10:ruleFile"/>
+</xs:schema>

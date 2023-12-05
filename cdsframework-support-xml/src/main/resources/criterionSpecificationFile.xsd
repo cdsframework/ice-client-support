@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!--
+
+    The cdsframework support xml project implements some base xsd artifact generation functionality.
+
+    Copyright 2016 HLN Consulting, LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information about the this software, see https://www.hln.com/services/open-source/ or send
+    correspondence to scm@cdsframework.org.
+
+-->
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:c="org.cdsframework.util.support.data.cds.criterion"
+           elementFormDefault="qualified">
+    <xs:simpleType name="CriteriaTypeEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CLINICAL" />
+            <xs:enumeration value="DEATH_RECORD" />
+            <xs:enumeration value="DEMOGRAPHIC" />
+            <xs:enumeration value="EPIDEMIOLOGIC" />
+            <xs:enumeration value="LABORATORY" />
+            <xs:enumeration value="SUBORDINATE" />
+            <xs:enumeration value="TESTCASE" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CriteriaMethodEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SYMPTOM" />
+            <xs:enumeration value="DIAGNOSIS" />
+            <xs:enumeration value="CONTRIBUTING_TO_DEATH" />
+            <xs:enumeration value="CONTACT" />
+            <xs:enumeration value="RISK_GROUP" />
+            <xs:enumeration value="TEST" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="VersionStatusEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACTIVE" />
+            <xs:enumeration value="INACTIVE" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PredicateTypeEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PredicateGroup" />
+            <xs:enumeration value="Predicate" />
+            <xs:enumeration value="Criteria" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PredicateConjunctionEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AND" />
+            <xs:enumeration value="NOT" />
+            <xs:enumeration value="OR" />
+            <xs:enumeration value="XOR" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PredicatePartTypeEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DataInput" />
+            <xs:enumeration value="ModelElement" />
+            <xs:enumeration value="Resource" />
+            <xs:enumeration value="Text" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CriteriaResourceTypeEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Function" />
+            <xs:enumeration value="Global" />
+            <xs:enumeration value="Operator" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DataModelClassTypeEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Boolean" />
+            <xs:enumeration value="Complex" />
+            <xs:enumeration value="Concept" />
+            <xs:enumeration value="Date" />
+            <xs:enumeration value="Enumeration" />
+            <xs:enumeration value="Identifier" />
+            <xs:enumeration value="Numeric" />
+            <xs:enumeration value="Quantity" />
+            <xs:enumeration value="DateRange" />
+            <xs:enumeration value="String" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ConceptSelectionTypeEnum" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Code" />
+            <xs:enumeration value="Concept" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ResourceParameter">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="classType" type="DataModelClassTypeEnum" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Resource">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="criteriaResourceType" type="CriteriaResourceTypeEnum" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="resourceParameter" type="ResourceParameter" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PredicatePartConceptSelection">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="displayName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="codeSystemId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="codeSystemOid" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="codeSystemName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="conceptDeterminationMethod" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PredicatePart">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="overridable" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="alias" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="partType" type="PredicatePartTypeEnum" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="order" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="text" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="resourceType" type="CriteriaResourceTypeEnum" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="resource" type="Resource" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="selectedResourceParameter" type="ResourceParameter" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="conceptSelectionType" type="ConceptSelectionTypeEnum" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dataInputClassType" type="DataModelClassTypeEnum" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dataModelElementNodePath" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="idRoot" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="idExtension" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dataInputBoolean" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dataInputDate1" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dataInputDate2" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="dataInputNumeric" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="partSelection" type="PredicatePartConceptSelection" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Predicate">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="predicateType" type="PredicateTypeEnum" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="order" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="predicateConjunction" type="PredicateConjunctionEnum" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="predicate" type="Predicate" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="predicatePart" type="PredicatePart" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="predicateCriterion" type="Criterion" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Criterion">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="criteriaType" type="CriteriaTypeEnum" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="criteriaMethod" type="CriteriaMethodEnum" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="predicate" type="Predicate" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="criterion" type="Criterion"/>
+</xs:schema>

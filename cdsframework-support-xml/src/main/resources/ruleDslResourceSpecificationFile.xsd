@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    The cdsframework support xml project implements some base xsd artifact generation functionality.
+
+    Copyright 2016 HLN Consulting, LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information about the this software, see https://www.hln.com/services/open-source/ or send
+    correspondence to scm@cdsframework.org.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:rl7="org.cdsframework.util.support.data.rule.dsl.resource"
+           xmlns:rl8="org.cdsframework.util.support.data.rule.dsl.value"
+           xmlns:rl9="org.cdsframework.util.support.data.rule.dsl"
+           targetNamespace="org.cdsframework.util.support.data.rule.dsl"
+           version="1.0">
+    <xs:import namespace="org.cdsframework.util.support.data.rule.dsl.resource" schemaLocation="dslResourceSpecificationFile.xsd"/>
+    <xs:import namespace="org.cdsframework.util.support.data.rule.dsl.value" schemaLocation="ruleDslValueSpecificationFile.xsd"/>
+    <xs:complexType name="ruleDslResource">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ruleDslResource" type="rl9:ruleDslResource"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ruleDslValue" type="rl8:ruleDslValue"/>
+            <xs:element minOccurs="0" name="createDatetime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="createId" type="xs:string"/>
+            <xs:element minOccurs="0" name="dslLevel" type="rl7:dslLevel"/>
+            <xs:element minOccurs="0" name="dslResource" type="rl7:dslResource"/>
+            <xs:element minOccurs="0" name="lastModDatetime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="lastModId" type="xs:string"/>
+            <xs:element minOccurs="0" name="parentRenderSequence" type="xs:int"/>
+            <xs:element minOccurs="0" name="prefix" type="xs:string"/>
+            <xs:element minOccurs="0" name="renderSequence" type="xs:int"/>
+            <xs:element minOccurs="0" name="ruleDslResourceId" type="xs:int"/>
+            <xs:element minOccurs="0" name="ruleId" type="xs:int"/>
+            <xs:element minOccurs="0" name="sortSequence" type="xs:int"/>
+            <xs:element minOccurs="0" name="suffix" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RuleDslResourceSpecificationFile" type="rl9:ruleDslResource"/>
+</xs:schema>

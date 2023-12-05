@@ -1,0 +1,2 @@
+# -D option below is required to elimiate .xsd file validation exception during validation
+mvn -Dhttp.agent="whatever" clean install

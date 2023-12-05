@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+
+    The cdsframework support xml project implements some base xsd artifact generation functionality.
+
+    Copyright 2016 HLN Consulting, LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information about the this software, see https://www.hln.com/services/open-source/ or send
+    correspondence to scm@cdsframework.org.
+
+-->
+<ns2:iceSeriesSpecificationFile xmlns:ns2="org.cdsframework.util.support.data.ice.series">
+    <ns2:iceSeriesName>HPV 3-dose Series</ns2:iceSeriesName>
+    <cdsVersion>org.nyc.cir^ICE^1.0.0</cdsVersion>
+    <doseInterval>
+        <ns2:fromDoseNumber>1</ns2:fromDoseNumber>
+        <ns2:toDoseNumber>2</ns2:toDoseNumber>
+        <ns2:absoluteMinimumInterval>24d</ns2:absoluteMinimumInterval>
+        <ns2:minimumInterval>28d</ns2:minimumInterval>
+        <ns2:earliestRecommendedInterval>2m</ns2:earliestRecommendedInterval>
+    </doseInterval>
+    <doseInterval>
+        <ns2:fromDoseNumber>2</ns2:fromDoseNumber>
+        <ns2:toDoseNumber>3</ns2:toDoseNumber>
+        <ns2:absoluteMinimumInterval>80d</ns2:absoluteMinimumInterval>
+        <ns2:minimumInterval>84d</ns2:minimumInterval>
+        <ns2:earliestRecommendedInterval>4m</ns2:earliestRecommendedInterval>
+    </doseInterval>
+    <doseInterval>
+        <ns2:fromDoseNumber>1</ns2:fromDoseNumber>
+        <ns2:toDoseNumber>3</ns2:toDoseNumber>
+        <ns2:absoluteMinimumInterval>112d</ns2:absoluteMinimumInterval>
+        <ns2:minimumInterval>112d</ns2:minimumInterval>
+        <ns2:earliestRecommendedInterval>6m</ns2:earliestRecommendedInterval>
+    </doseInterval>
+    <ns2:numberOfDosesInSeries>3</ns2:numberOfDosesInSeries>
+    <vaccineGroup code="840" codeSystem="2.16.840.1.113883.3.795.12.100.1"
+        codeSystemName="ICE Vaccine Group" displayName="Human Papillomavirus"/>
+    <iceSeriesDose>
+        <ns2:doseNumber>1</ns2:doseNumber>
+        <ns2:absoluteMinimumAge>9y - 4d</ns2:absoluteMinimumAge>
+        <ns2:minimumAge>9y</ns2:minimumAge>
+        <ns2:earliestRecommendedAge>11y</ns2:earliestRecommendedAge>
+    </iceSeriesDose>
+    <iceSeriesDose>
+        <ns2:doseNumber>2</ns2:doseNumber>
+        <ns2:absoluteMinimumAge>9y 24d</ns2:absoluteMinimumAge>
+        <ns2:minimumAge>9y 28d</ns2:minimumAge>
+    </iceSeriesDose>
+    <iceSeriesDose>
+        <ns2:doseNumber>3</ns2:doseNumber>
+        <ns2:absoluteMinimumAge>9y 112d</ns2:absoluteMinimumAge>
+        <ns2:minimumAge>9y 112d</ns2:minimumAge>
+    </iceSeriesDose>
+</ns2:iceSeriesSpecificationFile>

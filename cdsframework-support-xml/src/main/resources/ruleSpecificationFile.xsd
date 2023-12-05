@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    The cdsframework support xml project implements some base xsd artifact generation functionality.
+
+    Copyright 2016 HLN Consulting, LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    For more information about the this software, see https://www.hln.com/services/open-source/ or send
+    correspondence to scm@cdsframework.org.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:rl1="org.cdsframework.util.support.data.rule.group.flow"
+           xmlns:rl2="org.cdsframework.util.support.data.rule.group.agenda"
+           xmlns:rl3="org.cdsframework.util.support.data.rule.group.activation"
+           xmlns:rl9="org.cdsframework.util.support.data.rule.dsl"
+           xmlns:rl10="org.cdsframework.util.support.data.rule.file"
+           xmlns:rl11="org.cdsframework.util.support.data.rule"
+           targetNamespace="org.cdsframework.util.support.data.rule"
+           version="1.0">
+    <xs:import namespace="org.cdsframework.util.support.data.rule.group.flow" schemaLocation="flowGroupSpecificationFile.xsd"/>
+    <xs:import namespace="org.cdsframework.util.support.data.rule.group.agenda" schemaLocation="agendaGroupSpecificationFile.xsd"/>
+    <xs:import namespace="org.cdsframework.util.support.data.rule.group.activation" schemaLocation="activationGroupSpecificationFile.xsd"/>
+    <xs:import namespace="org.cdsframework.util.support.data.rule.file" schemaLocation="ruleFileSpecificationFile.xsd"/>
+    <xs:import namespace="org.cdsframework.util.support.data.rule.dsl" schemaLocation="ruleDslResourceSpecificationFile.xsd"/>
+    <xs:complexType name="rule">
+        <xs:sequence>
+            <xs:element name="cdsVersion" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en">A cds version that this season is associated with.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="createDatetime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="createId" type="xs:string"/>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="droolsDialect" type="rl11:droolsDialect"/>
+            <xs:element minOccurs="0" name="exportOrder" type="xs:int"/>
+            <xs:element minOccurs="0" name="lastModDatetime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="lastModId" type="xs:string"/>
+            <xs:element minOccurs="0" name="activationGroup" type="rl3:activationGroup"/>
+            <xs:element minOccurs="0" name="agendaGroup" type="rl2:agendaGroup"/>
+            <xs:element minOccurs="0" name="ruleFile" type="rl10:ruleFile"/>
+            <xs:element minOccurs="0" name="flowGroup" type="rl1:flowGroup"/>
+            <xs:element minOccurs="0" name="ruleId" type="xs:int"/>
+            <xs:element minOccurs="0" name="ruleName" type="xs:string"/>
+            <xs:element minOccurs="0" name="salient" type="xs:int"/>
+            <xs:element minOccurs="0" name="status" type="rl11:status"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="ruleDslResource" type="rl9:ruleDslResource"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RuleSpecificationFile" type="rl11:rule"/>
+    <xs:simpleType name="droolsDialect">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Java"/>
+            <xs:enumeration value="Mvel"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACTIVE"/>
+            <xs:enumeration value="INACTIVE"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
