@@ -21,7 +21,8 @@
 package org.cdsframework.cds.vmr;
 
 import java.io.File;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.cdsframework.util.support.cds.Config;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -37,7 +38,7 @@ import org.opencds.vmr.v1_0.schema.CDSOutput;
  */
 public class CdsObjectAssistTest {
 
-    private final static Logger logger = Logger.getLogger(CdsObjectAssistTest.class);
+    private final static Logger logger = LogManager.getLogger();
     private byte[] tmp;
 
     @BeforeClass

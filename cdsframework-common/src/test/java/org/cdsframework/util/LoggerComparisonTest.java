@@ -20,7 +20,8 @@
  */
 package org.cdsframework.util;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -72,7 +73,7 @@ public class LoggerComparisonTest {
    
     @Test
     public void testLog4jApple() {
-        final Logger logger4J = Logger.getLogger(LoggerComparisonTest.class);
+        final Logger logger4J = LogManager.getLogger(LoggerComparisonTest.class);
         long log4j = 0;
         long maxIter = 300;
         logger4J.info("log4J - init");

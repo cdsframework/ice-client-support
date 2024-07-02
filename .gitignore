@@ -18,10 +18,13 @@ dist/
 
 # Package files
 *.jar
+!/local-repo/**/*.jar
 
 # Maven
 target/
 dist/
+
+*.versionsBackup
 
 # JetBrains IDE
 .idea/

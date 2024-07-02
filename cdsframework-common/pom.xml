@@ -2,40 +2,23 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>cdsframework-common</artifactId>
-    <packaging>jar</packaging>
-    <name>cdsframework-common</name>
-
     <parent>
         <groupId>org.cdsframework</groupId>
-        <artifactId>cdsframework-client-support</artifactId>
-        <version>1.0.1</version>
+        <artifactId>ice-client-support</artifactId>
+        <version>2.43.1-SNAPSHOT</version>
     </parent>
-    <version>1.0.2</version>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    
+    <artifactId>cdsframework-common</artifactId>
+    <name>cdsframework-common</name>
 
     <dependencies>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jms</artifactId>
-                    <groupId>javax.jms</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jmxri</artifactId>
-                    <groupId>com.sun.jmx</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jmxtools</artifactId>
-                    <groupId>com.sun.jdmk</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -43,45 +26,14 @@
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-            </plugin>
-            <plugin>
                 <inherited>false</inherited>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
-                <version>1.9.0</version>
                 <configuration>
-                    <basedir>${basedir}</basedir>
-                    <header>${basedir}/../LICENSE-header.txt</header>
-                    <quiet>false</quiet>
-                    <failIfMissing>true</failIfMissing>
-                    <strictCheck>true</strictCheck>
-                    <aggregate>false</aggregate>
-                    <useDefaultExcludes>true</useDefaultExcludes>
-                    <useDefaultMapping>true</useDefaultMapping>
                     <properties>
                         <blurb>The cdsframework common project implements some base framework functionality.</blurb>
-                        <year>2016</year>
-                        <email>scm@cdsframework.org</email>
-                        <url>https://www.hln.com/services/open-source/</url>
-                        <owner>HLN Consulting, LLC</owner>
                     </properties>
-                    <encoding>UTF-8</encoding>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>check-headers</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

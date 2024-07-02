@@ -1,7 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    The opencds support client project implements some base opencds artifacts and functionality.
+    The cdsframework support client aims at making ICE vMR generation easier.
 
     Copyright 2016 HLN Consulting, LLC
 
@@ -21,15 +21,15 @@
     correspondence to scm@cdsframework.org.
 
 -->
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://www.w3.org/2001/XMLSchema"
-        xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
-        jaxb:version="3.0">
-    <annotation>
-        <appinfo>
-            <jaxb:schemaBindings>
-                <jaxb:package name="org.omg.spec.cdss._201105.dss"/>
-            </jaxb:schemaBindings>
-        </appinfo>
-    </annotation>
-</schema>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

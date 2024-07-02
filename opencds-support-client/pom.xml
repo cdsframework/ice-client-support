@@ -2,48 +2,42 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>opencds-support-client</artifactId>
-    <packaging>jar</packaging>
-    <name>opencds-support-client</name>
     <parent>
         <groupId>org.cdsframework</groupId>
-        <artifactId>cdsframework-client-support</artifactId>
-        <version>1.0.1</version>
+        <artifactId>ice-client-support</artifactId>
+        <version>2.43.1-SNAPSHOT</version>
     </parent>
-    <version>1.0.3</version>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    
+    <artifactId>opencds-support-client</artifactId>
+    <name>opencds-support-client</name>
 
     <dependencies>
         <dependency>
             <groupId>org.opencds</groupId>
             <artifactId>opencds-vmr-1_0-schema</artifactId>
-            <version>2.0.4</version>
+            <version>${opencds.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opencds</groupId>
             <artifactId>opencds-config-schema</artifactId>
-            <version>2.0.4</version>
+            <version>${opencds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>support.hln.com</id>
-            <name>support.hln.com-releases</name>
-            <url>https://hlnconsulting.jfrog.io/artifactory/libs-release-local</url>
-        </repository>
-    </repositories>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.8.2</version>
+                <groupId>org.jvnet.jaxb</groupId>
+                <artifactId>jaxb-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <goals>
@@ -67,13 +61,6 @@
                         <id>client</id>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jaxb-api</artifactId>
-                        <version>2.2.7</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
                     <extension>true</extension>
@@ -82,9 +69,8 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
-                <version>1.12</version>
                 <executions>
                     <execution>
                         <goals>
@@ -110,13 +96,6 @@
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.xml.ws</groupId>
-                        <artifactId>jaxws-api</artifactId>
-                        <version>2.2.8</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
                     <xnocompile>true</xnocompile>
@@ -129,35 +108,25 @@
                 <inherited>false</inherited>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
-                <version>1.9.0</version>
                 <configuration>
-                    <basedir>${basedir}</basedir>
-                    <header>${basedir}/../LICENSE-header.txt</header>
-                    <quiet>false</quiet>
-                    <failIfMissing>true</failIfMissing>
-                    <strictCheck>true</strictCheck>
-                    <aggregate>false</aggregate>
-                    <useDefaultExcludes>true</useDefaultExcludes>
-                    <useDefaultMapping>true</useDefaultMapping>
                     <properties>
                         <blurb>The opencds support client project implements some base opencds artifacts and functionality.</blurb>
-                        <year>2016</year>
-                        <email>scm@cdsframework.org</email>
-                        <url>https://www.hln.com/services/open-source/</url>
-                        <owner>HLN Consulting, LLC</owner>
                     </properties>
-                    <encoding>UTF-8</encoding>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>check-headers</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>my-local-repo</id>
+            <url>file://${project.basedir}/../local-repo</url>
+            <releases>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+            <snapshots>
+                <checksumPolicy>ignore</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

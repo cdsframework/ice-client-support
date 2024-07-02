@@ -2,54 +2,200 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.cdsframework</groupId>
-    <artifactId>cdsframework-client-support</artifactId>
-    <version>1.0.2</version>
+    <artifactId>ice-client-support</artifactId>
+    <version>2.43.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>cdsframework-client-support</name>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <name>ice-client-support</name>
 
     <modules>
         <module>cdsframework-support-client</module>
         <module>opencds-support-client</module>
-        <module>cdsframework-support-testcase-importers</module>
-        <module>cdsframework-support-xml</module>
         <module>cdsframework-common</module>
-        <module>cdsframework-support-testcase-importers-excel</module>
         <module>cdsframework-support-ice</module>
-        <module>cdsframework-support-ice-testcase</module>
     </modules>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <opencds.version>6.2.0</opencds.version>
+        
+        <!-- build dep versions -->
+        <java.version>17</java.version>
+
+        <jaxb-maven-plugin.version>4.0.3</jaxb-maven-plugin.version>
+        <jaxws-maven-plugin.version>3.0.2</jaxws-maven-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
+        <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
+
+        <!-- dep versions -->
+        <commons-io.version>2.16.1</commons-io.version>
+        <jaxws-rt.version>4.0.2</jaxws-rt.version>
+        <jakarta.xml.bind-api.version>4.0.2</jakarta.xml.bind-api.version>
+        <jakarta.xml.ws-api.version>4.0.2</jakarta.xml.ws-api.version>
+        <log4j.version>2.23.1</log4j.version>
+        <poi.version>3.17</poi.version>
+        <poi-ooxml.version>3.17</poi-ooxml.version>
+
+        <!-- test dep versions -->
+        <junit.version>4.13.2</junit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${jakarta.xml.bind-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.ws</groupId>
+                <artifactId>jakarta.xml.ws-api</artifactId>
+                <version>${jakarta.xml.ws-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-rt</artifactId>
+                <version>${jaxws-rt.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi-ooxml.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jvnet.jaxb</groupId>
+                    <artifactId>jaxb-maven-plugin</artifactId>
+                    <version>${jaxb-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.sun.xml.ws</groupId>
+                    <artifactId>jaxws-maven-plugin</artifactId>
+                    <version>${jaxws-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <release>${java.version}</release>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila.maven-license-plugin</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>${maven-license-plugin.version}</version>
+                    <configuration>
+                        <basedir>${basedir}</basedir>
+                        <header>${basedir}/../LICENSE-header.txt</header>
+                        <quiet>false</quiet>
+                        <failIfMissing>true</failIfMissing>
+                        <strictCheck>true</strictCheck>
+                        <aggregate>false</aggregate>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <useDefaultMapping>true</useDefaultMapping>
+                        <properties>
+                            <blurb>The cdsframework support client aims at making vMR generation easier.</blurb>
+                            <year>2016</year>
+                            <email>scm@cdsframework.org</email>
+                            <url>https://www.hln.com/services/open-source/</url>
+                            <owner>HLN Consulting, LLC</owner>
+                        </properties>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>check-headers</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>format</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.1</version>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
@@ -58,8 +204,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

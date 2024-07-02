@@ -59,7 +59,7 @@ public class LogUtilsTest {
     public void testLogUtilsDebug() {
         System.out.println("testing LogUtils");
         LogUtils logger = LogUtils.getLogger(LogUtilsTest.class);
-        logger.setDebugEnabled();
+//        logger.setDebugEnabled();
         logger.debug("this ", "is ", "a ", "test", 1, 2, 3, 9.0001, 12L);
         logger.debug("this ", "is ", "a ", "test Exception: ", new Exception("debug"));
         logger.debug("this ", "is ", "a ", "test nested Exception: ", new IllegalArgumentException("I couldn't find it!!!", new Exception("debug")));

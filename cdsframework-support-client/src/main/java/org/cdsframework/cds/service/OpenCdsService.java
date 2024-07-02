@@ -30,7 +30,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
-import javax.xml.ws.BindingProvider;
+import jakarta.xml.ws.BindingProvider;
 import org.cdsframework.cds.vmr.CdsObjectAssist;
 import org.cdsframework.exceptions.CdsException;
 import org.cdsframework.util.LogUtils;

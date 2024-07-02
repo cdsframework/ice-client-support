@@ -21,7 +21,7 @@
     correspondence to scm@cdsframework.org.
 
 -->
-<bindings xmlns="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" extensionBindingPrefixes="xjc" version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<bindings xmlns="https://jakarta.ee/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" extensionBindingPrefixes="xjc" version="3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <globalBindings>
         <xjc:simple/>
         <javaType name="java.util.Date" xmlType="xs:date" parseMethod="org.opencds.support.util.DateUtils.parseDate" printMethod="org.opencds.support.util.DateUtils.printDate"/>

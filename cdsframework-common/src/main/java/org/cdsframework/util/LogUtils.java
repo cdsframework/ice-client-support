@@ -23,8 +23,9 @@ package org.cdsframework.util;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.cdsframework.enumeration.LogLevel;
 
 /**
@@ -36,7 +37,7 @@ public class LogUtils implements Serializable {
     private static final long serialVersionUID = 614570976714188422L;
 
     protected Logger logger;
-    private final Level initialLevel;
+//    private final Level initialLevel;
     private static final String BEGIN = "Begin ";
     private static final String END = "End ";
     private static final String INIT = "Initialize ";
@@ -49,8 +50,8 @@ public class LogUtils implements Serializable {
      * @param loggerString
      */
     public LogUtils(String loggerString) {
-        logger = Logger.getLogger(loggerString);
-        initialLevel = logger.getLevel();
+        logger = LogManager.getLogger(loggerString);
+//        initialLevel = logger.getLevel();
     }
 
     /**
@@ -59,8 +60,8 @@ public class LogUtils implements Serializable {
      * @param childClass
      */
     public LogUtils(Class childClass) {
-        logger = Logger.getLogger(childClass);
-        initialLevel = logger.getLevel();
+        logger = LogManager.getLogger(childClass);
+//        initialLevel = logger.getLevel();
         logger.debug("Initializing logger for class: " + childClass.getSimpleName());
     }
 
@@ -391,9 +392,9 @@ public class LogUtils implements Serializable {
     /**
      * Sets the log level to debug.
      */
-    public void setDebugEnabled() {
-        logger.setLevel(Level.DEBUG);
-    }
+//    public void setDebugEnabled() {
+//        logger.setLevel(Level.DEBUG);
+//    }
 
     /**
      * Returns whether or not log level trace is enabled.
@@ -407,16 +408,16 @@ public class LogUtils implements Serializable {
     /**
      * Sets log level to trace.
      */
-    public void setTraceEnabled() {
-        logger.setLevel(Level.TRACE);
-    }
+//    public void setTraceEnabled() {
+//        logger.setLevel(Level.TRACE);
+//    }
 
     /**
      * Reset the logger level to the value that the logger was initialized with.
      */
-    public void resetLevel() {
-        logger.setLevel(initialLevel);
-    }
+//    public void resetLevel() {
+//        logger.setLevel(initialLevel);
+//    }
 
     /**
      * Logs the duration of an operation at the specified log level.
