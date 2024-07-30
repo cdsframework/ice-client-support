@@ -139,7 +139,7 @@
                         <useDefaultMapping>true</useDefaultMapping>
                         <properties>
                             <blurb>The cdsframework support client aims at making vMR generation easier.</blurb>
-                            <year>2016</year>
+                            <year>2024</year>
                             <email>scm@cdsframework.org</email>
                             <url>https://www.hln.com/services/open-source/</url>
                             <owner>HLN Consulting, LLC</owner>
